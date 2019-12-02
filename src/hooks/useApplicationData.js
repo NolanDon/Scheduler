@@ -68,8 +68,10 @@ export default function useApplicationData() {
     
     Promise.all([days,appointments,interviewers])
     .then((all) => {
-     
+      
       const [days, appointments, interviewers] = all;
+      console.log('api/appointments', appointments)
+      console.log('api/interviewers', days)
       // console.log('days from req /days', days.data)
       // console.log('spots', days.data[1].spots)
       dispatch(({ 
