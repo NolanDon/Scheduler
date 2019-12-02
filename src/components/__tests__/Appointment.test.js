@@ -1,3 +1,4 @@
+import Appointment from '../Appointment';
 /*
   We are rendering `<Application />` down below, so we need React.createElement
 */
@@ -8,6 +9,14 @@ import React from "react";
   The render function allows us to render Components
 */
 import { render } from "@testing-library/react";
+
+
+describe("Appointment", () => {
+  it("renders without crashing", () => {
+    render(<Appointment />);
+  });
+});
+
 
 /*
   We import the component that we are testing
