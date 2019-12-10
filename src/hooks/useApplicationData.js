@@ -1,15 +1,17 @@
 import { useEffect, useReducer } from 'react';
 
-import axios from 'axios';
+import axios from "axios";
 
-export default function useApplicationData() {
-  
-  const SET_DAY = "SET_DAY";
-  const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
-  const SET_INTERVIEW = "SET_INTERVIEW";
-  const SET_SPOTSREMAINING = "SET_SPOTSREMAINING";
-  const SET_APPOINTMENTS = "SET_APPOINTMENTS";
-  
+import reducer, {
+  SET_DAY,
+  SET_APPLICATION_DATA,
+  SET_INTERVIEW,
+  SET_SPOTSREMAINING,
+  SET_APPOINTMENTS
+} from "reducers/application"
+
+ export default function useApplicationData() {
+  // axios.get("http://localhost:8001/api/debug/reset")
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
@@ -27,40 +29,6 @@ export default function useApplicationData() {
     });
     return day; 
   }
-  
-
-  function reducer(state, action) {
-    // console.log('redyucer', action.type, action)
-    switch (action.type) {
-      case SET_DAY:
-        return { ...state, 
-          day: action.day };
-      case SET_APPLICATION_DATA:
-        return {...state, 
-          days: action.days, 
-          appointments: action.appointments, 
-          interviewers: action.interviewers };
-      case SET_INTERVIEW: {
-        return {...state,
-          appointments: action.appointments
-        }
-      }
-      case SET_APPOINTMENTS:
-        return {...state, 
-           
-          appointments: action.appointments, 
-        };
-      case SET_SPOTSREMAINING: {
-        return {...state,
-          days: action.stateDays
-        }
-      }
-      default:
-      throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
-    }
-  }; 
-
-  
   useEffect(() => {
     const days = axios.get("/api/days")
     const appointments = axios.get("/api/appointments")
@@ -68,10 +36,8 @@ export default function useApplicationData() {
     
     Promise.all([days,appointments,interviewers])
     .then((all) => {
-     
+      
       const [days, appointments, interviewers] = all;
-      // console.log('days from req /days', days.data)
-      // console.log('spots', days.data[1].spots)
       dispatch(({ 
         type: SET_APPLICATION_DATA,
         days: days.data,
@@ -79,7 +45,6 @@ export default function useApplicationData() {
         interviewers: interviewers.data }));
       });     
     }, []);
-
 
   // change to dispatch
   const setDay = day => dispatch({ type: SET_DAY, day });
@@ -116,7 +81,7 @@ export default function useApplicationData() {
   const deleteInterview = function(id) {
     
     const spotDay = AppId(id)
-    console.log('deleteInterview')
+    // console.log('deleteInterview')
     const spotIncrease = (spotDay) =>{
       const output = state.days.map((item, index)=>{
         if (index !== spotDay.id -1){
