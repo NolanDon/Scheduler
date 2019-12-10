@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from '../Button';
 import InterviewerList from '../InterviewerList';
 
+
 export default function Form(props) {
   const { interviewers, onCancel, onSave } = props;
 
@@ -58,8 +59,7 @@ export default function Form(props) {
           </Button>
           <Button
             confirm
-            onClick={validate}
-          >
+            onClick={validate}>
             Save
           </Button>
         </section>
