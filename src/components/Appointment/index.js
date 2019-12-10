@@ -70,7 +70,7 @@ export default function Appointment(props) {
         })
     }; 
          
-  // Creates an appointment
+ 
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={time} />
