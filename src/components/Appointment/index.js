@@ -22,7 +22,7 @@ export default function Appointment(props) {
       id,
       interviewers,
     } = props;
-
+    // console.log(props)
     const EMPTY = "EMPTY";
     const SHOW = "SHOW";
     const CONFIRM = "CONFIRM";
@@ -60,12 +60,12 @@ export default function Appointment(props) {
 
       // remove appointment function
       function remove() {
-        console.log('appointments index remove', id)
+        // console.log('appointments index remove', id)
         transition(DELETING, true)
         deleteInterview(id)
         .then(() => {transition(EMPTY) 
         }).catch((error) => {
-          console.log('transition ERROR_DELETE', error)
+          // console.log('transition ERROR_DELETE', error)
           transition(ERROR_DELETE, true)
         })
     }; 
@@ -78,7 +78,7 @@ export default function Appointment(props) {
         <Confirm
           onCancel={() => transition(SHOW)}
           onConfirm={remove}
-          message="Are you want to delete your appointment?"
+          message="Are you sure you want to delete your appointment?"
         />
       )}
       {mode === CREATE && (

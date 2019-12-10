@@ -9,7 +9,7 @@ import {
   getInterview,
   getAppointmentsForDay,
   getInterviewersForDay,
-  // getSpotsForDay
+  
 } from '../helpers/selectors';
 
 export default function Application() {
@@ -20,17 +20,15 @@ export default function Application() {
     deleteInterview,
     bookInterview
   } = useApplicationData();
-  // console.log('useappdata', state);
+  
   
   const interviewers = getInterviewersForDay(state, state.day);
     
   const appointmentsIN = getAppointmentsForDay(state, state.day)
-  console.log('application root', useApplicationData(), state)
-  // console.log("appointmentsIN", appointmentsIN)
+ 
   const appointments = appointmentsIN
   .map(
     appointment => {
-      // console.log('state.day', state.day)
       return (
         <Appointment
           key={appointment.id}
