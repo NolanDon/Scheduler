@@ -11,7 +11,6 @@ import reducer, {
 } from "reducers/application"
 
  export default function useApplicationData() {
-  // axios.get("http://localhost:8001/api/debug/reset")
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
