@@ -45,7 +45,6 @@ import reducer, {
       });     
     }, []);
 
-  // change to dispatch
   const setDay = day => dispatch({ type: SET_DAY, day });
 
   function bookInterview(id, interview) {
@@ -80,7 +79,6 @@ import reducer, {
   const deleteInterview = function(id) {
     
     const spotDay = AppId(id)
-    // console.log('deleteInterview')
     const spotIncrease = (spotDay) =>{
       const output = state.days.map((item, index)=>{
         if (index !== spotDay.id -1){
@@ -102,14 +100,10 @@ import reducer, {
       const appointments = {...state.appointments}
       appointments[id].interview = null;
 
-      // delete appointments[id];
-      // console.log('delete', appointments)
-      // console.log('id', id)
-      // days
       dispatch({ type: SET_APPOINTMENTS, appointments })
   })
 .then(() => dispatch({ type: SET_SPOTSREMAINING, stateDays}));
   }; 
-  // console.log('logging state', state)
+
   return { bookInterview, deleteInterview, state, setDay };
 };

@@ -5,7 +5,7 @@
   export const SET_APPOINTMENTS = "SET_APPOINTMENTS";
 
  export default function reducer(state, action) {
-  // console.log('redyucer', action.type, action)
+
   switch (action.type) {
     case SET_DAY:
       return { ...state, 

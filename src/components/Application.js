@@ -4,7 +4,6 @@ import Appointment from './Appointment';
 import useApplicationData from 'hooks/useApplicationData'
 import "components/Application.scss";
 
-// importing helper functions
 import {
   getInterview,
   getAppointmentsForDay,

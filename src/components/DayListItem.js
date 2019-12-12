@@ -1,7 +1,6 @@
 import React from "react";
 import "components/DayListItem.scss";
 import classnames from 'classnames';
-// import { getMaxListeners } from "cluster";
 
 export const formatSpots = (spots) => {
   if (spots === 1) {
