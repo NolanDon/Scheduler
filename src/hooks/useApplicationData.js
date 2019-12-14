@@ -75,6 +75,21 @@ import reducer, {
     return axios.put(`/api/appointments/${id}`, {interview})
     .then(axios.get('/api/days').then(() => dispatch({ type: SET_INTERVIEW, appointments }), dispatch({ type: SET_SPOTSREMAINING, stateDays} )))
   };
+  
+  function editInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.put(`/api/appointments/${id}`, { interview })
+      .then(axios.get('/api/days')
+      .then(() => dispatch({ type: SET_INTERVIEW, appointments, })))
+  }
 
   const deleteInterview = function(id) {
     
@@ -105,5 +120,5 @@ import reducer, {
 .then(() => dispatch({ type: SET_SPOTSREMAINING, stateDays}));
   }; 
 
-  return { bookInterview, deleteInterview, state, setDay };
+  return { bookInterview, deleteInterview, editInterview, state, setDay };
 };
