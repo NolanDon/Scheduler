@@ -73,7 +73,8 @@ import reducer, {
     };
     
     return axios.put(`/api/appointments/${id}`, {interview})
-    .then(axios.get('/api/days').then(() => dispatch({ type: SET_INTERVIEW, appointments }), dispatch({ type: SET_SPOTSREMAINING, stateDays} )))
+    .then(axios.get('/api/days')
+    .then(() => dispatch({ type: SET_INTERVIEW, appointments }), dispatch({ type: SET_SPOTSREMAINING, stateDays} )))
   };
   
   function editInterview(id, interview) {
