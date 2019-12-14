@@ -14,7 +14,7 @@ export const formatSpots = (spots) => {
 
 export default function DayListItem(props) {
 
-  const { day, selected, setDay } = props;
+  const { selected, setDay } = props;
   const dayClass = classnames("day-list__item", {
     "day-list__item--selected": selected,
     "day-list__item--full": props.spots === 0
