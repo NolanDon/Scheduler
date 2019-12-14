@@ -52,7 +52,7 @@ describe('Appointment', () => {
 
     const appointments = getAllByTestId(container, 'appointment');
     const appointment = appointments[0];
-    console.log(prettyDOM(appointment));
+    
 
     fireEvent.click(getByAltText(appointment, 'Add'));
 
@@ -112,7 +112,7 @@ describe('Appointment', () => {
     );
 
     // 9. Make sure that the amount of spots is still at one
-    expect(getByText(day, 'no spots remaining')).toBeInTheDocument();
+    expect(getByText(day, '1 spot remaining')).toBeInTheDocument();
   });
 
  // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -130,7 +130,7 @@ describe('Appointment', () => {
     // {4} Get the first appointment in Array [0]
     const appointments = getAllByTestId(container, 'appointment');
     const appointment = appointments[0];
-    console.log(prettyDOM(appointment));
+    
 
     // {5} Click Add button
     fireEvent.click(getByAltText(appointment, 'Add'));
@@ -201,7 +201,7 @@ describe('Appointment', () => {
   const appointment = getAllByTestId(container, 'appointment').find(
     appointment => queryByText(appointment, "Archie Cohen")
   );
-  console.log(prettyDOM(appointment))
+  
   fireEvent.click(queryByAltText(appointment, 'Delete'));
 
   // {4} Check that the confirmation message is shown.
