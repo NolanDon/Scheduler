@@ -12,7 +12,7 @@ import DayListItem from 'components/DayListItem';
 import InterviewerList from 'components/InterviewerList';
 import InterviewerListItem from 'components/InterviewerListItem';
 
-import Appointment from 'components/Appointment';
+import Appointment from 'components/Appointment/index';
 import Confirm from 'components/Appointment/Confirm';
 import Empty from 'components/Appointment/Empty';
 import Error from 'components/Appointment/Error';
@@ -20,8 +20,6 @@ import Form from 'components/Appointment/Form';
 import Header from 'components/Appointment/Header';
 import Show from 'components/Appointment/Show';
 import Status from 'components/Appointment/Status';
-
-import { getSpotsForDay } from 'helpers/selectors';
 
 const appointments = {
   '1': { id: 1, time: '12pm', interview: null },
@@ -48,13 +46,22 @@ const days = [
     id: 1,
     name: 'Monday',
     appointments: [1, 2, 3],
-    interviewers: [1, 3, 4]
+    interviewers: [1, 3, 4],
+    spots: 2,
   },
   {
     id: 2,
     name: 'Tuesday',
     appointments: [4, 5],
-    interviewers: [3, 5]
+    interviewers: [3, 5],
+    spots: 5,
+  },
+  {
+    id: 3,
+    name: 'Wednesday',
+    appointments: [4, 5],
+    interviewers: [3, 5],
+    spots: 0,
   }
 ];
 
@@ -108,8 +115,6 @@ storiesOf('DayList', module)
       days={days}
       selectedDay={'Monday'}
       setDay={action('setDay')}
-      getSpotsForDay={getSpotsForDay}
-      appointments={appointments}
     />
   ))
   .add('Tuesday', () => (
@@ -117,8 +122,6 @@ storiesOf('DayList', module)
       days={days}
       selectedDay={'Tuesday'}
       setDay={action('setDay')}
-      getSpotsForDay={getSpotsForDay}
-      appointments={appointments}
     />
   ));
 
@@ -176,11 +179,11 @@ storiesOf('InterviewerList', module)
     .add("Appointment with Time", () => <Appointment time="12pm" />)
     .add("Header", () => <Header time="12pm" />)
     .add("Empty", () => <Empty onAdd={action("onAdd")} />)
-    .add("Show", () => (
+    .add("Appointment", () => (
     <Show 
     student="Lydia Miller-Jones" 
-    interviewer = {interviewers} 
-    onEdit= {action("onEdit")} 
+    interviewer = {interviewers[1]} 
+    onEdit = {action("onEdit")} 
     onDelete = {action("onDelete")} />
   ))
   .add('Confirm', () => (
@@ -221,8 +224,11 @@ storiesOf('InterviewerList', module)
   ))
   .add('Appointment Empty', () => (
     <Fragment>
-      <Appointment id={1} time="12pm" onAdd={action('onAdd')} />
+      <Appointment id={1} time="12pm" onAdd={action('onAdd')} 
+      interviewers={interviewers}/>
+      
       <Appointment id="last" time="1pm" onAdd={action('onAdd')} />
+
     </Fragment>
   ))
   .add('Appointment Booked', () => (
