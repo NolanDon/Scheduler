@@ -17,10 +17,11 @@ export default function Appointment(props) {
   const {
       interview,
       time,
+      editInterview,
       bookInterview,
       deleteInterview,
       id,
-      interviewers,
+      interviewers = [],
     } = props;
    
     const EMPTY = "EMPTY";
@@ -51,26 +52,37 @@ export default function Appointment(props) {
         interviewer
       };
       transition(SAVING, true)
-      props.bookInterview(props.id, interview)
+      bookInterview(props.id, interview)
       .then(() => {
         transition(SHOW)
       }).catch(() => transition(ERROR_SAVE, true));
       return interview;
     };
-
+    
+    // edit interview
+    function edit(name, interviewer) {
+      const interview = {
+        student: name,
+        interviewer
+        };
+        transition(SAVING, true)
+        editInterview(props.id, interview)
+        .then(() => {
+            transition(SHOW)
+        }).catch(() => 
+        transition(ERROR_SAVE, true));
+    }
       // remove appointment function
-      function remove() {
-      
-        transition(DELETING, true)
-        deleteInterview(id)
-        .then(() => {transition(EMPTY) 
-        }).catch((error) => {
-         
-          transition(ERROR_DELETE, true)
-        })
+    function remove() {
+    
+      transition(DELETING, true)
+      deleteInterview(id)
+      .then(() => {transition(EMPTY) 
+      }).catch(() => {
+        transition(ERROR_DELETE, true)
+      })
     }; 
          
- 
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={time} />
@@ -94,14 +106,7 @@ export default function Appointment(props) {
           name={interview.student}
           interviewer={interview.interviewer.id}
           interviewers={interviewers}
-          onSave={(name, interviewer) => {
-            transition(SAVING);
-            bookInterview(id, save(name, interviewer))
-              .then(() => transition(SHOW))
-              .catch(() => {
-                transition(ERROR_SAVE, true);
-              });
-          }}
+          onSave={edit}
           onCancel={() => previous()}
         />
       )}
