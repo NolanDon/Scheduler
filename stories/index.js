@@ -21,26 +21,6 @@ import Header from 'components/Appointment/Header';
 import Show from 'components/Appointment/Show';
 import Status from 'components/Appointment/Status';
 
-const appointments = {
-  '1': { id: 1, time: '12pm', interview: null },
-  '2': { id: 2, time: '1pm', interview: null },
-  '3': {
-    id: 3,
-    time: '2pm',
-    interview: { student: 'Archie Cohen', interviewer: 2 }
-  },
-  '4': {
-    id: 4,
-    time: '3pm',
-    interview: { student: 'Chad Takahashi', interviewer: 2 }
-  },
-  '5': {
-    id: 5,
-    time: '4pm',
-    interview: { student: 'Chad Takahashi', interviewer: 2 }
-  }
-};
-
 const days = [
   {
     id: 1,
@@ -176,15 +156,15 @@ storiesOf('InterviewerList', module)
     backgrounds: [{ name: "white", value: "#fff", default: true }]
   })
     .add("Appointment", () => <Appointment />)
-    .add("Appointment with Time", () => <Appointment time="12pm" />)
     .add("Header", () => <Header time="12pm" />)
     .add("Empty", () => <Empty onAdd={action("onAdd")} />)
-    .add("Appointment", () => (
-    <Show 
-    student="Lydia Miller-Jones" 
-    interviewer = {interviewers[1]} 
-    onEdit = {action("onEdit")} 
-    onDelete = {action("onDelete")} />
+    .add("Show", () => (
+      <Show 
+        student="Lydia Miller-Jones" 
+        interviewer = {interviewers[1]} 
+        onEdit = {action("onEdit")} 
+        onDelete = {action("onDelete")} 
+      />
   ))
   .add('Confirm', () => (
     <Confirm
