@@ -1,6 +1,14 @@
-# Interview Scheduler
-## Single Page App
-## Home Page with booked Appointments
+# Nolans "Interview Scheduler" Project (Lighthouse Labs)
+
+## Functional Requirements
+
+There are multiple high-level goals to this project:
+
+- Become familiar with the React library
+- Use existing code style and approach to implement new features in unfamiliar territory
+- Apply previous learning tactics to research and become familiar with a new paradigm
+
+## Home Page
 ![Screenshot from 2019-11-27 17-13-25](https://user-images.githubusercontent.com/48977789/69908016-3731ea00-139e-11ea-9959-20ad66738a0d.png)
 # Creating Appointment 
 ![Screenshot from 2019-11-30 18-15-03](https://user-images.githubusercontent.com/48977789/69908014-36995380-139e-11ea-834e-30fd59ef76ca.png)
@@ -32,16 +40,18 @@ npm test
 npm run storybook
 ```
 ## Dependencies
+[React]
+Node 10.x or above
+NPM 5.x or above
+PostGres 6.x
+.env
 
-- Node 10.x or above
-- NPM 5.x or above
-- PostGres 6.x
+Webpack
+Babel
+Axios
+Storybook
+Jest
+Cypress
+Webpack Dev Server
 
-## [ Front-end Languages ]
-- REACT
-- JSX
-- CSS
-
-## [ Back-end Languages ]
-- Node
 
