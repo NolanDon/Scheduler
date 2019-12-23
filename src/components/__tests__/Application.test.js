@@ -83,7 +83,7 @@ describe('Appointment', () => {
 
     // {2} Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
-    prettyDOM(container)
+    
     // {3} Click Edit button on the Appointment
     const appointment = getAllByTestId(container, "appointment").find(
       appointment => queryByText(appointment, "Archie Cohen")
@@ -160,8 +160,8 @@ describe('Appointment', () => {
     axios.delete.mockRejectedValueOnce();
 
     // {2} Render <Application>
-    const { container,debug } = render(<Application />);
-    debug()
+    const { container } = render(<Application />);
+   
     // {3} Wait for "Leopold Silvers" to display
     await waitForElement(() => getByText(container, "Archie Cohen"));
 

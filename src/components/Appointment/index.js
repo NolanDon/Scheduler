@@ -66,7 +66,7 @@ export default function Appointment(props) {
         interviewer
         };
         transition(SAVING, true)
-        editInterview(props.id, interview)
+        editInterview(id, interview)
         .then(() => {
             transition(SHOW)
         }).catch(() => 
@@ -97,7 +97,7 @@ export default function Appointment(props) {
         <Form
           interviewers={interviewers}
           onSave={save}
-          onCancel={() => previous()}
+          onCancel={() => transition(EMPTY)}
         />
       )}
       {mode === DELETING && <Status message="Deleting" />}
@@ -107,7 +107,7 @@ export default function Appointment(props) {
           interviewer={interview.interviewer.id}
           interviewers={interviewers}
           onSave={edit}
-          onCancel={() => previous()}
+          onCancel={() => transition(EMPTY)}
         />
       )}
       {(mode === EMPTY || mode === SHOW) && !interview && (
