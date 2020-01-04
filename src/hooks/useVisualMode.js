@@ -10,8 +10,8 @@ export default function useVisualMode(value) {
     }
     newMode(value)
   }
-    function previous() {
-      if (history.length >= 1) {
+    function previous(mode) {
+      if (history.length > 1) {
         newMode([history.length - 1]);
         setHistory(prev => [...prev.slice(0, -1)]);
       };
