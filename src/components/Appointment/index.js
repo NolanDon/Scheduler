@@ -123,7 +123,7 @@ export default function Appointment(props) {
         <Error message="Could not delete appointment." onClose={() => back()} />
       )}
       {mode === ERROR_SAVE && (
-        <Error message="Could not save appointment." onClose={() => back()} />
+        <Error message="Could not save appointment." onClose={() => transition(EMPTY)} />
       )}
       {mode === SAVING && <Status message="Saving" />}
       {(mode === EMPTY || mode === SHOW) && interview && (
