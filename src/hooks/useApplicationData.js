@@ -93,9 +93,8 @@ function editInterview(id, interview) {
   };
 
   return axios.put(`/api/appointments/${id}`, { interview })
-    .then(axios.get('/api/days')
-    .then(() => dispatch({ type: SET_INTERVIEW, appointments, })))
-};
+  .then(() => dispatch({ type: SET_INTERVIEW, appointments })
+  )}
 
 const deleteInterview = function(id) {
   
