@@ -51,13 +51,12 @@ export default function Appointment(props) {
         student: name,
         interviewer
       };
-      transition(SAVING)
-      bookInterview(props.id, interview)
+      transition(SAVING, true)
+      bookInterview(id, interview)
       .then(() => 
         transition(SHOW))
       .catch(() => 
         transition(ERROR_SAVE, true));
-      return interview;
     };
     
     // edit interview
@@ -65,14 +64,14 @@ export default function Appointment(props) {
       const interview = {
         student: name,
         interviewer
-      }
+      };
       transition(SAVING, true)
       editInterview(id, interview)
       .then(() => 
         transition(SHOW))
       .catch(() => 
         transition(ERROR_SAVE, true));
-    }
+    };
       // remove appointment function
     function remove() {
     

@@ -50,8 +50,9 @@ useEffect(() => {
 const setDay = day => dispatch({ type: SET_DAY, day });
 
 function bookInterview(id, interview) {
+  
   const spotDay = AppId(id)
-  const spotIncrease = (spotDay) =>{
+  const spotIncrease = (spotDay) => {
     const output = state.days.map((item, index) => {
       if (index !== spotDay.id -1) {
         return item;
@@ -76,9 +77,11 @@ function bookInterview(id, interview) {
     [id]: appointment
   };
   
-  return axios.put(`/api/appointments/${id}`, {interview})
-  .then(() => dispatch({ type: SET_INTERVIEW, appointments }), 
-   dispatch({ type: SET_SPOTSREMAINING, stateDays}))
+  return axios.put(`/api/appointments/${id}`, { interview })
+  .then(res => { 
+    dispatch({ type: SET_INTERVIEW, appointments, }); 
+    dispatch({ type: SET_SPOTSREMAINING, stateDays });
+  })
 };
   
 function editInterview(id, interview) {
